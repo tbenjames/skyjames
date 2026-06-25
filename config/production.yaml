@@ -1,0 +1,26 @@
+# SkyJames Production Configuration
+api:
+  host: 0.0.0.0
+  port: 5000
+  cors_origins: ["*"]
+
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment: "SkyJames"
+
+monitoring:
+  prometheus_port: 9090
+  metrics_enabled: true
+
+logging:
+  level: INFO
+  format: json
+  elk_enabled: false
+
+webhooks:
+  enabled: true
+  retry_count: 3
+
+ab_testing:
+  enabled: true
+  traffic_split: 50

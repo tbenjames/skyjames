@@ -1,0 +1,73 @@
+# SkyJames Manual Test Commands
+
+# ==================== 1. TEST DASHBOARD ====================
+# Run dashboard
+streamlit run scripts/dashboard_app.py
+
+# Test dashboard features:
+# - Click all navigation buttons
+# - Upload a video
+# - Process a video
+# - Check video gallery
+# - Test webcam toggle
+# - Test API toggle
+
+# ==================== 2. TEST WEB APP ====================
+# Run SkyJames main app
+python skyjames.py --help
+python skyjames.py --mode webcam
+python skyjames.py --mode video --video data/input/test_video.avi
+python skyjames.py --mode sports
+python skyjames.py --mode api
+
+# ==================== 3. TEST API ====================
+# Start API
+python skyjames.py --mode api &
+
+# Test API status
+curl http://localhost:5000/status
+
+# Test API detection
+curl -X POST -F "image=@data/input/test_video.avi" http://localhost:5000/detect
+
+# Stop API
+pkill -f "skyjames.py --mode api"
+
+# ==================== 4. TEST VIDEO PROCESSING ====================
+# Test with sample video
+python scripts/run_pipeline_with_model.py --video data/input/test_video.avi
+
+# Test with webcam
+python scripts/webcam_pipeline.py
+
+# ==================== 5. TEST COMPARISON ====================
+# Test comparison
+python scripts/compare_real_world.py
+
+# Test comparison video
+python scripts/generate_comparison_video.py
+
+# ==================== 6. TEST DATABASE ====================
+# Test database
+python scripts/database.py
+
+# Check database file
+ls -la data/skyjames.db
+
+# ==================== 7. TEST SPORTS ANALYSIS ====================
+# Test football analysis
+python scripts/football_analysis.py
+
+# ==================== 8. TEST WEBRTC ====================
+# Test WebRTC streaming
+python scripts/webrtc_stream.py
+
+# ==================== 9. PERFORMANCE TEST ====================
+# Test performance
+python scripts/compare_performance.py
+
+# ==================== 10. SYSTEM TEST ====================
+# Check system
+python -c "import cv2; print('OpenCV:', cv2.__version__)"
+python -c "import torch; print('PyTorch:', torch.__version__)"
+python -c "import streamlit; print('Streamlit:', streamlit.__version__)"

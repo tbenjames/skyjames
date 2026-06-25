@@ -1,0 +1,30 @@
+
+============================================================
+WORLD CUP 2026 ANALYSIS - PORTUGAL VS UZBEKISTAN
+============================================================
+
+Analysis Date: 2026-06-24 22:21:49
+
+PERFORMANCE METRICS:
+--------------------
+Total Frames Processed: 35,010
+Average Inference Time: 92.5 ms
+Processing Speed: 10.8 FPS
+Detection Accuracy: 85.0%
+
+GAME STATISTICS:
+----------------
+Possession - Portugal: 65.0%
+Possession - Uzbekistan: 35.0%
+Goals - Portugal: 5
+Goals - Uzbekistan: 0
+Yellow Cards: 0
+Red Cards: 0
+
+DETECTION PERFORMANCE:
+----------------------
+Average Players/Frame: 2.1
+Max Players Detected: 3
+Detection Stability: High
+
+============================================================

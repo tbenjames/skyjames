@@ -1,0 +1,55 @@
+# SkyJames Model Configuration
+# Define which models to load and their settings
+
+models:
+  yolo11:
+    enabled: true
+    version: 'n'  # n, s, m, l, x
+    confidence: 0.5
+    iou: 0.45
+    
+  yolo11_seg:
+    enabled: true
+    version: 'n'
+    confidence: 0.5
+    
+  yolo11_pose:
+    enabled: true
+    version: 'n'
+    confidence: 0.5
+    
+  yolo11_obb:
+    enabled: false
+    version: 'n'
+    confidence: 0.5
+    
+  bytetrack:
+    enabled: true
+    track_thresh: 0.5
+    high_thresh: 0.6
+    match_thresh: 0.8
+    
+  twinlitenet:
+    enabled: false
+    model_path: 'models/twinlitenet_plus.pth'
+    input_size: [640, 360]
+    
+  suscnnet:
+    enabled: false
+    model_path: 'models/suscnnet.pth'
+    
+  deepsort:
+    enabled: false
+    max_cosine_distance: 0.3
+    nn_budget: 100
+
+active_models:
+  - yolo11
+  - yolo11_seg
+  - yolo11_pose
+  - bytetrack
+
+performance:
+  use_gpu: false
+  batch_size: 1
+  frame_skip: 2  # Process every Nth frame

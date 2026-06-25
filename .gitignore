@@ -1,0 +1,124 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Streamlit
+.streamlit/
+*.streamlit/
+
+# MLflow
+mlflow.db
+mlflow_artifacts/
+mlruns/
+
+# Data files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.csv
+*.json
+
+# Models
+*.pth
+*.pt
+*.onnx
+*.trt
+*.engine
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Output files
+data/output/
+data/input/
+data/real_videos/
+data/sports/
+data/backups/
+data/temp/
+data/test/
+
+# Temporary files
+*.tmp
+temp/
+*.temp
+
+# Configuration files with secrets
+config/users.json
+config/tenants.json
+config/email_config.json
+config/notifications.json
+config/ab_testing.json
+
+# Environment variables
+.env
+.env.local
+
+# Test files
+tests/__pycache__/
+
+# Docker
+*.tar.gz
+*.zip
+
+# Uploads
+uploads/
+
+# Backup files
+*.bak
+*.backup
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Coverage reports
+.coverage
+coverage.xml
+htmlcov/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Other
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg

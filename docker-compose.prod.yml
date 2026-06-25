@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # Web Application
+  web:
+    build: .
+    ports:
+      - "8501:8501"
+      - "5001:5001"
+    environment:
+      - ENV=production
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    depends_on:
+      - mlflow
+      - redis
+      - postgres
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    restart: always
+
+  # MLflow Tracking
+  mlflow:
+    image: mlflow/mlflow:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow_artifacts:/mlflow
+    command: mlflow server --backend-store-uri postgresql://skyjames:skyjames@postgres/mlflow --default-artifact-root /mlflow --host 0.0.0.0
+
+  # Redis Cache
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data
+    restart: always
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: skyjames
+      POSTGRES_PASSWORD: skyjames
+      POSTGRES_DB: skyjames
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  # Prometheus Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus_data:/prometheus
+    restart: always
+
+  # Grafana Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: always
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - web
+    restart: always
